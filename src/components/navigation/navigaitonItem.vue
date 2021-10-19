@@ -20,6 +20,7 @@ export default {
     height: 35px;
     width: 258px;
     margin-left: 17px;
+    margin-bottom: 23.5px;
     background-image: url(../../assets/pictures/navigation/navSelected.png);
     align-items: center;
   }
