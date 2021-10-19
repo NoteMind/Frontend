@@ -1,16 +1,31 @@
 <template>
-  <div class="selectedNav">
+  <div class="selectedNav" :style='isShow ? selectedStyle : normalStyle'>
     <img :src="require('@/assets/pictures/navigation/svgs/' + iconSrc + '')" class="navIcon">
     <div class="navFont menuName">{{menuName}}</div>
-    <img src="@/assets/pictures/navigation/svgs/add_black_24dp.svg" name="plusIcon" class="plusIcon">
-    <img src="@/assets/pictures/navigation/svgs/triangle_black.svg" class="triangleIcon">
+    <img src="@/assets/pictures/navigation/svgs/add_black_24dp.svg" name="plusIcon" class="plusIcon" v-show="isShow=='我的文档' && menuName=='我的文档'">
+    <img src="@/assets/pictures/navigation/svgs/triangle_black.svg" class="triangleIcon" v-show="isShow=='我的文档' && menuName=='我的文档'">
   </div>
 </template>
 
 <script>
 export default {
   name: 'navigation-item',
-  props: ['menuName', 'icon-src']
+  props: {
+    menuName: String,
+    iconSrc: String,
+    isShow: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function () {
+    return {
+      selectedStyle: 'background: linear-gradient(265.28deg, rgba(248, 138, 195, 0.42) 32.03%, rgba(91, 207, 251, 0.42) 70.15%);',
+      normalStyle: ''
+    }
+  },
+  methods: {
+  }
 }
 </script>
 
@@ -20,22 +35,12 @@ export default {
     height: 42px;
     width: 258px;
     margin-left: 17px;
-<<<<<<< HEAD:NoteMind/notemind/src/components/navigation/navigaitonItem.vue
-=======
-    margin-bottom: 23.5px;
-    background-image: url(../../assets/pictures/navigation/navSelected.png);
->>>>>>> 54226d186a057a03f38ae2ee51054f860a7ad16d:src/components/navigation/navigaitonItem.vue
     align-items: center;
+    border-radius: 10px;
   }
 
    .selectedNav:hover{
-    display: flex;
-    height: 42px;
-    width: 258px;
-    margin-left: 17px;
-    align-items: center;
     background: linear-gradient(265.28deg, rgba(248, 138, 195, 0.42) 32.03%, rgba(91, 207, 251, 0.42) 70.15%);
-    border-radius: 10px;
   }
 
   .navIcon{
