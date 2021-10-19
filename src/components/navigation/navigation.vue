@@ -1,24 +1,20 @@
 <template>
   <div>
-    <div class="nav" v-show="isShow">
+    <div :class="isShow?'ShowMenu':'HideMenu'">
       <user class="userContent"></user>
       <search class="searchContent"></search>
       <div class="menu">
-        <navigaiton-item menuName="我的文档">
-          <img slot="navIcon" src="@/assets/pictures/navigation/home.png">
+        <navigaiton-item menuName="我的文档" iconSrc="home_black_24dp.svg">
         </navigaiton-item>
-        <navigaiton-item menuName="快速访问">
-          <img slot="navIcon" src="@/assets/pictures/navigation/flash.png">
+        <navigaiton-item menuName="快速访问" iconSrc="thunder_black_24dp.svg">
         </navigaiton-item>
-        <navigaiton-item menuName="最近编辑">
-          <img slot="navIcon" src="@/assets/pictures/navigation/time.png">
+        <navigaiton-item menuName="最近编辑" iconSrc="history_black_24dp.svg">
         </navigaiton-item>
-        <navigaiton-item menuName="回收站">
-          <img slot="navIcon" src="@/assets/pictures/navigation/trash.png">
+        <navigaiton-item menuName="回收站" iconSrc="delete_black_24dp.svg">
         </navigaiton-item>
       </div>
     </div>
-    <img src="@/assets/pictures/navigation/leftarrow.png" class="hideNav" @click="isHideNav">
+    <img src="@/assets/pictures/navigation/btn-hide.png" :class="isShow?'ShowBtn':'HideBtn'" @click="isHideNav">
   </div>
 </template>
 
@@ -48,20 +44,41 @@ export default {
 </script>
 
 <style>
-  .nav{
+  .ShowMenu{
     position: absolute;
     height: 800px;
     width: 292px;
     background-color: #F7F7F7;
+    transform: translate(0px,0px);
+    transition:transform .5s;
   }
 
-  .hideNav{
-    position: relative;
+  .HideMenu{
+    position: absolute;
+    height: 800px;
+    width: 292px;
+    background-color: #F7F7F7;
+    transform: translate(-292px,0px);
+    transition:transform .5s;
+  }
+
+  .ShowBtn{
+    position: absolute;
     width: 25px;
     border-radius: 25px;
-    box-shadow: #6e6d6d 0px 0px 3px;
     top: 400px;
-    left: 279px;
+    left: 39px;
+    transform: translate(240px,0px) rotate(0);
+    transition: transform .5s;
+  }
+
+  .HideBtn{
+    position: absolute;
+    width: 25px;
+    border-radius: 25px;
+    top: 400px;
+    transform: translate(0px,0px) rotate(180deg);
+    transition: transform .5s;
   }
 
   .userContent{

@@ -2,14 +2,13 @@
   <div class="userNav">
     <img src="@/assets/pictures/navigation/user1.jpg" class="userImg">
     <div class="navFont userName">杨天悦</div>
-    <img src="@/assets/pictures/navigation/rtriangle.png" class="triangle">
-    <img src="@/assets/pictures/navigation/userMessage.png" class="messageIcon">
+    <img src="@/assets/pictures/navigation/svgs/triangle_black.svg" class="triangle">
+    <img src="@/assets/pictures/navigation/notifications_gradient_24dp.png" class="messageIcon">
   </div>
 </template>
 
 <script>
 import '@/assets/css/font.css'
-
 export default {
   name: 'user'
 }
@@ -36,6 +35,7 @@ export default {
     height: 13px;
     width: 13px;
     margin-left: 10px;
+    transform: rotate(90deg);
   }
 
   .messageIcon{

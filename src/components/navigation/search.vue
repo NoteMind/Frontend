@@ -5,7 +5,7 @@
       <input placeholder="全局搜索" class="searchInput">
     </div>
     <div class="addButton">
-      <img src="@/assets/pictures/navigation/plus.png" class="addIcon">
+      <img src="@/assets/pictures/navigation/svgs/add_white_24dp.svg" class="addIcon">
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
   }
 
   .addIcon{
-    width: 12.25px;
-    height: 12.25px;
+    width: 21px;
+    height: 21px;
   }
 </style>
