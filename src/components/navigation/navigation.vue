@@ -8,8 +8,9 @@
           <navigaiton-item
             :menuName="item.title"
             :iconSrc="item.icon"
-            :isShow="item.id === currentMenuId">
-        </navigaiton-item>
+            :isShow="item.id === currentMenuId"
+            :isHideSub="isHideSub">
+          </navigaiton-item>
         </div>
       </div>
     </div>
@@ -37,6 +38,7 @@ export default {
     return {
       isShow: true,
       currentMenuId: 1,
+      isHideSub: false,
       menuList: [
         { id: 1, title: '我的文档', icon: 'home_black_24dp.svg' },
         { id: 2, title: '快速访问', icon: 'thunder_black_24dp.svg' },
@@ -51,7 +53,9 @@ export default {
     },
     isChoose: function (id) {
       this.currentMenuId = id
-      // console.log(id, this.currentMenuId)
+      if (id !== 1) {
+        this.isHideSub = false
+      }
     }
   }
 }
