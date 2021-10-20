@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 <template>
   <div>
     <div :class="isShow ? 'ShowMenu' : 'HideMenu'">

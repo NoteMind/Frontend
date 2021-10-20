@@ -8,8 +8,8 @@
       <img src="@/assets/pictures/navigation/svgs/triangle_black_bottom.svg" class="triangleIcon" v-show="isShow==true && menuName=='我的文档'&isHideSub===true">
     </div>
     <div v-show="menuName==='我的文档'&isShow===true&isHideSub===false" class="subMenuItem">
-      <div v-for="(item, index) in subMenuList" :key="index">
-        <subnavigation-item :icon="item.icon" :submenuName="item.name"></subnavigation-item>
+      <div v-for="(item, index) in fileList" :key="index">
+        <subnavigation-item :icon="item.directory ? fileIcon : sfileIcon" :submenuName="item.name"></subnavigation-item>
       </div>
     </div>
   </div>
@@ -17,6 +17,7 @@
 
 <script>
 import subnavigationItem from '@/components/navigation/subnavigationItem.vue'
+import axios from 'axios'
 
 export default {
   name: 'navigation-item',
@@ -36,12 +37,26 @@ export default {
     return {
       selectedStyle: 'background: linear-gradient(265.28deg, rgba(248, 138, 195, 0.42) 32.03%, rgba(91, 207, 251, 0.42) 70.15%);',
       normalStyle: '',
+      fileIcon: 'file_black.svg',
+      sfileIcon: 'sfile_black.svg',
+      fileList: [],
       subMenuList: [
         { icon: 'file_black.svg', name: 'NoteMind需求文档' },
         { icon: 'sfile_black.svg', name: '第一次会议记录' },
         { icon: 'sfile_black.svg', name: 'NoteMind概述' }
       ]
     }
+  },
+  created: function () {
+    axios({
+      methods: 'get',
+      url: 'http://127.0.0.1:8080/api/files',
+      params: {
+        plusFilePath: 'test'
+      }
+    }).then(res => {
+      this.fileList = res.data
+    })
   },
   methods: {
     hideOrShow: function () {
