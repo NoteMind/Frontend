@@ -1,6 +1,6 @@
 <template>
-  <div class="files">
-    <fileTitle titleName="我的文档" class="documentsTile" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
+  <div class="trashContent">
+     <fileTitle titleName="最近删除" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
     <div class="filesDisplay">
       <div v-for="(item, index) in fileList" :key="index">
         <fileItem :fileName="item.name" :isFolder="item.directory" @deleteFlush="orderByName"></fileItem>
@@ -10,21 +10,21 @@
 </template>
 
 <script>
+import axios from 'axios'
 import fileTitle from '@/components/documents/title.vue'
 import fileItem from '@/components/documents/file.vue'
-import axios from 'axios'
 
 export default {
-  name: 'workspace',
+  name: 'tarshPage',
   components: {
     fileTitle,
     fileItem
   },
   props: {
-    fileList: Array
   },
   data: function () {
     return {
+      fileList: []
     }
   },
   methods: {
@@ -34,7 +34,7 @@ export default {
         url: 'http://127.0.0.1:8080/api/files',
         params: {
           plusFilePath: '',
-          isTrash: false
+          isTrash: true
         }
       }).then(res => {
         this.fileList = res.data
@@ -46,7 +46,7 @@ export default {
         url: 'http://127.0.0.1:8080/api/filesByDate',
         params: {
           plusFilePath: '',
-          isTrash: false
+          isTrash: true
         }
       }).then(res => {
         this.fileList = res.data
@@ -58,7 +58,7 @@ export default {
         url: 'http://127.0.0.1:8080/api/filesByLength',
         params: {
           plusFilePath: '',
-          isTrash: false
+          isTrash: true
         }
       }).then(res => {
         this.fileList = res.data
@@ -72,17 +72,13 @@ export default {
 </script>
 
 <style scoped>
-  .documentsTile{
-    margin-left: 292px;
-  }
-
-  .files{
+  .trashContent{
     display: flex;
     flex-direction: column;
+    margin-left: 292px;
   }
 
   .filesDisplay{
-    margin-left: 292px;
     display: flex;
   }
 </style>

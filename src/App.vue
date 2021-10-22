@@ -1,15 +1,36 @@
 <template>
   <div id="app">
-    <workspace></workspace>
+    <div class="content">
+      <navigation :fileList="fileList"></navigation>
+      <router-view :fileList="fileList"></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import workspace from '@/views/documentsPage.vue'
+import navigation from '@/components/navigation/navigation.vue'
+import axios from 'axios'
 
 export default {
   components: {
-    workspace
+    navigation
+  },
+  data: function () {
+    return {
+      fileList: []
+    }
+  },
+  created: function () {
+    axios({
+      methods: 'get',
+      url: 'http://127.0.0.1:8080/api/files',
+      params: {
+        plusFilePath: '',
+        isTrash: false
+      }
+    }).then(res => {
+      this.fileList = res.data
+    })
   }
 }
 </script>
@@ -18,5 +39,9 @@ export default {
   *{
     margin: 0;
     padding: 0;
+  }
+
+  .content{
+    display: flex;
   }
 </style>

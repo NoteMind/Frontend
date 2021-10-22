@@ -1,7 +1,7 @@
 <template>
   <div class="userNav">
     <img src="@/assets/pictures/navigation/user1.jpg" class="userImg">
-    <div class="navFont userName">杨天悦</div>
+    <div class="navFont userName">陈宥伊</div>
     <img src="@/assets/pictures/navigation/svgs/triangle_black.svg" class="triangle">
     <img src="@/assets/pictures/navigation/notifications_gradient_24dp.png" class="messageIcon">
   </div>

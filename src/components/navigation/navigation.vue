@@ -46,9 +46,8 @@ export default {
       isHideSub: false,
       menuList: [
         { id: 1, title: '我的文档', icon: 'home_black_24dp.svg' },
-        { id: 2, title: '快速访问', icon: 'thunder_black_24dp.svg' },
-        { id: 3, title: '最近编辑', icon: 'history_black_24dp.svg' },
-        { id: 4, title: '回收站', icon: 'delete_black_24dp.svg' }
+        { id: 2, title: '最近编辑', icon: 'history_black_24dp.svg' },
+        { id: 3, title: '回收站', icon: 'delete_black_24dp.svg' }
       ]
     }
   },
@@ -60,6 +59,13 @@ export default {
       this.currentMenuId = id
       if (id !== 1) {
         this.isHideSub = false
+      }
+      if (id === 1) {
+        this.$router.push({ path: '/Documents' })
+      } else if (id === 2) {
+        this.$router.push({ path: '/Documents' })
+      } else {
+        this.$router.push({ path: '/Trash' })
       }
     }
   }
