@@ -9,12 +9,13 @@
 
 <script>
 import '@/assets/css/font.css'
+
 export default {
   name: 'user'
 }
 </script>
 
-<style>
+<style scoped>
   .userNav{
     display: flex;
     vertical-align: middle;

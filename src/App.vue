@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import workspace from '@/views/workspace.vue'
+import workspace from '@/views/documentsPage.vue'
 
 export default {
   components: {

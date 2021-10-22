@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import '@/assets/css/font.css'
+
 export default {
   name: 'subnavigation-item',
   props: {
@@ -15,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .subMenu{
     display: flex;
     margin-left: 45px;

@@ -17,7 +17,7 @@
 
 <script>
 import subnavigationItem from '@/components/navigation/subnavigationItem.vue'
-import axios from 'axios'
+import '@/assets/css/font.css'
 
 export default {
   name: 'navigation-item',
@@ -28,6 +28,7 @@ export default {
     menuName: String,
     iconSrc: String,
     isHideSub: Boolean,
+    fileList: Array,
     isShow: {
       type: Boolean,
       default: false
@@ -38,25 +39,8 @@ export default {
       selectedStyle: 'background: linear-gradient(265.28deg, rgba(248, 138, 195, 0.42) 32.03%, rgba(91, 207, 251, 0.42) 70.15%);',
       normalStyle: '',
       fileIcon: 'file_black.svg',
-      sfileIcon: 'sfile_black.svg',
-      fileList: [],
-      subMenuList: [
-        { icon: 'file_black.svg', name: 'NoteMind需求文档' },
-        { icon: 'sfile_black.svg', name: '第一次会议记录' },
-        { icon: 'sfile_black.svg', name: 'NoteMind概述' }
-      ]
+      sfileIcon: 'sfile_black.svg'
     }
-  },
-  created: function () {
-    axios({
-      methods: 'get',
-      url: 'http://127.0.0.1:8080/api/files',
-      params: {
-        plusFilePath: 'test'
-      }
-    }).then(res => {
-      this.fileList = res.data
-    })
   },
   methods: {
     hideOrShow: function () {
@@ -66,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .selectedNav{
     display: flex;
     height: 42px;

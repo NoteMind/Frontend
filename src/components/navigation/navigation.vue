@@ -10,7 +10,8 @@
             :menuName="item.title"
             :iconSrc="item.icon"
             :isShow="item.id === currentMenuId"
-            :isHideSub="isHideSub">
+            :isHideSub="isHideSub"
+            :fileList="fileList">
           </navigaiton-item>
         </div>
       </div>
@@ -34,6 +35,9 @@ export default {
     user,
     search,
     NavigaitonItem
+  },
+  props: {
+    fileList: Array
   },
   data: function () {
     return {
@@ -62,7 +66,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .ShowMenu {
   position: absolute;
   height: 800px;
