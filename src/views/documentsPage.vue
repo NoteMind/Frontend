@@ -12,7 +12,6 @@
 <script>
 import fileTitle from '@/components/documents/title.vue'
 import fileItem from '@/components/documents/file.vue'
-import axios from 'axios'
 
 export default {
   name: 'workspace',
@@ -28,45 +27,15 @@ export default {
     }
   },
   methods: {
-    orderByName: function () {
-      axios({
-        methods: 'get',
-        url: 'http://127.0.0.1:8080/api/files',
-        params: {
-          plusFilePath: '',
-          isTrash: false
-        }
-      }).then(res => {
-        this.fileList = res.data
-      })
+    orderByName: function (data) {
+      this.fileList = data
     },
-    orderByDate: function () {
-      axios({
-        methods: 'get',
-        url: 'http://127.0.0.1:8080/api/filesByDate',
-        params: {
-          plusFilePath: '',
-          isTrash: false
-        }
-      }).then(res => {
-        this.fileList = res.data
-      })
+    orderByDate: function (data) {
+      this.fileList = data
     },
-    orderByLength: function () {
-      axios({
-        methods: 'get',
-        url: 'http://127.0.0.1:8080/api/filesByLength',
-        params: {
-          plusFilePath: '',
-          isTrash: false
-        }
-      }).then(res => {
-        this.fileList = res.data
-      })
+    orderByLength: function (data) {
+      this.fileList = data
     }
-  },
-  mounted: function () {
-    this.orderByName()
   }
 }
 </script>

@@ -21,6 +21,7 @@
 
 <script>
 import '@/assets/css/font.css'
+import axios from 'axios'
 
 export default {
   name: 'fileTitle',
@@ -29,7 +30,9 @@ export default {
   },
   data: function () {
     return {
-      show: false
+      show: false,
+      fileList: [],
+      is_trash: true
     }
   },
   methods: {
@@ -40,14 +43,50 @@ export default {
       this.show = true
     },
     getByName: function () {
-      this.$emit('getByName')
+      if (this.titleName === '我的文档') { this.is_trash = false }
+      axios({
+        methods: 'get',
+        url: 'http://127.0.0.1:8080/api/files',
+        params: {
+          plusFilePath: '',
+          isTrash: this.is_trash
+        }
+      }).then(res => {
+        this.fileList = res.data
+        this.$emit('getByName', this.fileList)
+      })
     },
     getByLength: function () {
-      this.$emit('getByLength')
+      if (this.titleName === '我的文档') { this.is_trash = false }
+      axios({
+        methods: 'get',
+        url: 'http://127.0.0.1:8080/api/filesByDate',
+        params: {
+          plusFilePath: '',
+          isTrash: this.is_trash
+        }
+      }).then(res => {
+        this.fileList = res.data
+        this.$emit('getByLength', this.fileList)
+      })
     },
     getByDate: function () {
-      this.$emit('getByDate')
+      if (this.titleName === '我的文档') { this.is_trash = false }
+      axios({
+        methods: 'get',
+        url: 'http://127.0.0.1:8080/api/filesByLength',
+        params: {
+          plusFilePath: '',
+          isTrash: this.is_trash
+        }
+      }).then(res => {
+        this.fileList = res.data
+        this.$emit('getByDate', this.fileList)
+      })
     }
+  },
+  created: function () {
+    this.getByName()
   },
   directives: {
     onoutside: {
