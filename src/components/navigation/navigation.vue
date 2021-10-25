@@ -63,7 +63,7 @@ export default {
       if (id === 1) {
         this.$router.push({ path: '/Documents' })
       } else if (id === 2) {
-        this.$router.push({ path: '/Documents' })
+        this.$router.push({ path: '/Recent' })
       } else {
         this.$router.push({ path: '/Trash' })
       }

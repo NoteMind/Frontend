@@ -4,12 +4,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const Documents = () => import('@/views/documentsPage.vue')
-const Trash = () => import('@/views/trashPage')
+const Trash = () => import('@/views/trashPage.vue')
+const Recent = () => import('@/views/nearlyPage.vue')
 
 const routes = [
   {
     path: '',
-    redirect: '/Documents'
+    redirect: '/Recent'
   },
   {
     path: '/Documents',
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/Trash',
     component: Trash
+  },
+  {
+    path: '/Recent',
+    component: Recent
   }
 ]
 

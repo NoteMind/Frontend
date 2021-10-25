@@ -4,8 +4,9 @@
       <i :class="currentIconClass"></i>
       <div class="navFont fileName">{{fileName}}</div>
       <div class="cover" v-show="isShow">
-        <div class="coverItem"><i class="icon iconfont icon-open coverIcon"></i></div>
-        <div class="coverItem" @click="deleteFile(fileName)"><i class="icon iconfont icon-trash coverIcon"></i></div>
+        <div class="coverItem" v-show="!isTrash" @click="open"><i class="icon iconfont icon-open coverIcon"></i></div>
+        <div class="coverItem" v-show="isTrash" @click="backOrDeleteFile(fileName)"><i class="icon iconfont icon-arrow_backward coverIcon"></i></div>
+        <div class="coverItem" @click="backOrDeleteFile(fileName)"><i class="icon iconfont icon-trash coverIcon"></i></div>
       </div>
     </div>
   </div>
@@ -19,7 +20,8 @@ export default {
   name: 'fileItem',
   props: {
     fileName: String,
-    isFolder: Boolean
+    isFolder: Boolean,
+    isTrash: Boolean
   },
   data: function () {
     return {
@@ -35,15 +37,26 @@ export default {
     handleClose: function () {
       this.isShow = false
     },
-    deleteFile: function (fileName) {
+    backOrDeleteFile: function (fileName) {
       axios({
         methods: 'get',
-        url: 'http://127.0.0.1:8080/api/deleteFile',
+        url: 'http://127.0.0.1:8080/api/backOrDeleteFile',
         params: {
           plusFilePath: fileName
         }
       }).then(res => {
         this.$emit('deleteFlush')
+      })
+    },
+    open: function () {
+      axios({
+        methods: 'get',
+        url: 'http://127.0.0.1:8080/api/recordFile',
+        params: {
+          fileName: this.fileName
+        }
+      }).then(res => {
+        this.$emit('open', res.data)
       })
     }
   },

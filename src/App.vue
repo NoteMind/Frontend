@@ -17,7 +17,8 @@ export default {
   },
   data: function () {
     return {
-      fileList: []
+      fileList: [],
+      nearlyFiles: []
     }
   },
   created: function () {
