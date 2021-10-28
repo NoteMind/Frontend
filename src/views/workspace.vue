@@ -1,7 +1,7 @@
 <template>
   <div>
-    <navigation></navigation>
-    <markdown></markdown>
+    <navigation v-on:MoveNav="isShowNav=!isShowNav"></navigation>
+    <markdown :isShowNav="isShowNav"></markdown>
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   components: {
     navigation,
     markdown
+  },
+  data() {
+    return {
+      isShowNav:true
+    }
   }
 }
 </script>

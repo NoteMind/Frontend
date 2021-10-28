@@ -48,6 +48,7 @@ export default {
   methods: {
     isHideNav: function () {
       this.isShow = !this.isShow
+      this.$emit('MoveNav')
     },
     isChoose: function (id) {
       this.currentMenuId = id
@@ -60,7 +61,7 @@ export default {
 <style>
 .ShowMenu {
   position: absolute;
-  height: 800px;
+  height: calc(100vh);
   width: 292px;
   background-color: #f7f7f7;
   transform: translate(0px, 0px);
@@ -69,7 +70,7 @@ export default {
 
 .HideMenu {
   position: absolute;
-  height: 800px;
+  height: calc(100vh);
   width: 292px;
   background-color: #f7f7f7;
   transform: translate(-292px, 0px);
@@ -77,6 +78,7 @@ export default {
 }
 
 .ShowBtn {
+  z-index: 10;
   position: absolute;
   width: 25px;
   border-radius: 25px;
@@ -87,6 +89,7 @@ export default {
 }
 
 .HideBtn {
+  z-index: 10;
   position: absolute;
   width: 25px;
   border-radius: 25px;
