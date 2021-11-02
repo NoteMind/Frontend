@@ -1,28 +1,124 @@
 <template>
-  <div>
-    <navigation v-on:MoveNav="isShowNav=!isShowNav"></navigation>
-    <markdown :isShowNav="isShowNav"></markdown>
+  <div class="content">
+    <navigation v-on:MoveNav="onMoveNav"/>
+
+    <markdown
+      id="mdid"
+      @change="onTextChange"
+      :isShowNav="isShowNav"
+      :isShowMap="isShowMap"
+      v-on:ShowMap="onMoveMap"
+    />
+
+    <splitbar
+      id="barid"
+      v-if="isShowMap"
+      @mousedown.native="drag"
+    />
+    
+    <mindmap ref="mapref" id="mapid" v-if="isShowMap" :markdown="mdContent"/>
   </div>
 </template>
 
 <script>
 import navigation from '@/components/navigation/navigation.vue'
 import markdown from '@/components/markdown/markdown.vue'
+import mindmap from '@/components/markdown/mindmap.vue'
+import splitbar from '@/components/splitbar.vue'
 
 export default {
   name: 'workspace',
+  
   components: {
     navigation,
-    markdown
+    markdown,
+    mindmap,
+    splitbar
   },
+
   data() {
     return {
-      isShowNav:true
+      isShowNav:true,
+      isShowMap:false,
+      mdContent:'',
+      mdWidth:0
     }
-  }
+  },
+
+  mounted(){
+    this.stopMove()
+  },
+
+  methods:{
+    stopMove(){
+	    let m = function(e){e.preventDefault();};
+	    document.body.style.overflow='hidden';
+	  },
+    onTextChange(text){
+      this.mdContent = text.text
+    },
+    drag(e){
+      let left = document.getElementById('mdid')
+      let bar = document.getElementById('barid')
+      let right = document.getElementById('mapid')
+
+      let barLeft = e.clientX
+      bar.left = bar.offsetLeft
+      let outer = this
+      document.onmousemove = function(e) {
+        let diffVal = bar.left + (e.clientX -barLeft)
+        bar.style.left = diffVal + 'px'
+
+        if(outer.isShowNav){
+          left.style.width = diffVal - 292 + 'px'
+        } else {
+          left.style.width = ""
+          left.style.width = diffVal + 'px'
+        }
+        left.style.right = diffVal + 'px'
+        left.style.transition = 0 + 's'
+        
+        right.style.width = document.body.clientWidth - diffVal + 'px'
+        right.style.left = diffVal + 'px'
+      }
+      document.onmouseup = function() {
+        left.style.transition = 0.5 + 's'
+        document.onmousemove = null
+        document.onmouseup = null
+        outer.mdWidth = parseInt(left.style.width)
+        let map = outer.$refs.mapref
+        map.fitMindmap()
+      }
+    },
+    onMoveMap(e){
+      this.isShowMap=!this.isShowMap
+      let left = document.getElementById('mdid')
+      left.style.width = ""
+    },
+    onMoveNav(e){
+      this.isShowNav=!this.isShowNav
+      let left = document.getElementById('mdid')
+      if(this.mdWidth != 0){
+        if(!this.isShowNav){
+          left.style.width = this.mdWidth + 292 + 'px'
+          this.mdWidth = parseInt(left.style.width)
+          left.style.left = 0 + 'px'
+        } else {
+          left.style.width = this.mdWidth - 292 + 'px'
+          this.mdWidth = parseInt(left.style.width)
+          left.style.left = 292 + 'px'
+        }
+      }
+    }
+  },
 }
+
 </script>
 
-<style>
-
+<style scoped>
+  .content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
 </style>

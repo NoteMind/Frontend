@@ -60,6 +60,7 @@ export default {
 
 <style>
 .ShowMenu {
+  z-index: 8;
   position: absolute;
   height: calc(100vh);
   width: 292px;
@@ -69,6 +70,7 @@ export default {
 }
 
 .HideMenu {
+  z-index: 8;
   position: absolute;
   height: calc(100vh);
   width: 292px;
