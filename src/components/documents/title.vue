@@ -119,7 +119,7 @@ export default {
 <style scoped>
   .titleContent{
     display: flex;
-    margin-top: 48px;
+    /* margin-top: 48px; */
   }
 
   .fileTitle{
@@ -128,6 +128,7 @@ export default {
   }
 
   .dropMenu{
+    z-index: 1;
     display: flex;
     margin-left: 864px;
     height: 35px;

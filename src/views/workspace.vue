@@ -1,7 +1,7 @@
 <template>
-  <div class="content">
-    <navigation v-on:MoveNav="onMoveNav"/>
+  <div class="content_work">
 
+    
     <markdown
       id="mdid"
       @change="onTextChange"
@@ -116,9 +116,13 @@ export default {
 </script>
 
 <style scoped>
-  .content {
+  .content_work {
     height: 100%;
     width: 100%;
     display: flex;
+  }
+  .content_work .topNav{
+    position: absolute;
+
   }
 </style>

@@ -1,19 +1,26 @@
 <template>
   <div id="app">
     <div class="content">
-      <navigation :fileList="fileList"></navigation>
-      <router-view :fileList="fileList"></router-view>
+      <navigation v-on:MoveNav="onMoveNav"/>
+      <!-- <navigation :fileList="fileList"></navigation> -->
+      <router-view :fileList="fileList" class="topNav"></router-view>
+
+
+      <workspace></workspace>
+    
     </div>
   </div>
 </template>
 
 <script>
 import navigation from '@/components/navigation/navigation.vue'
+import workspace from '@/views/workspace.vue'
 import axios from 'axios'
 
 export default {
   components: {
-    navigation
+    navigation,
+    workspace
   },
   data: function () {
     return {
@@ -36,13 +43,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   *{
     margin: 0;
     padding: 0;
   }
-
+/* 
   .content{
     display: flex;
-  }
+  } */
 </style>

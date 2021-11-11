@@ -54,7 +54,7 @@ export default {
   methods: {
     isHideNav: function () {
       this.isShow = !this.isShow
-      this.$emit('MoveNav')
+      // this.$emit('MoveNav')
     },
     isChoose: function (id) {
       this.currentMenuId = id
