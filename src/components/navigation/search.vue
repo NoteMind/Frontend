@@ -15,7 +15,7 @@ export default {
   name: 'search',
   methods: {
     newMarkdown: function () {
-      this.$router.push({ path: '/Markdown' })
+      this.$router.push({ path: '/Markdown', query: { markdown: '' } })
     }
   }
 }

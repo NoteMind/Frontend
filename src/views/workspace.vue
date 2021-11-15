@@ -9,13 +9,9 @@
       :markdown="markdown"
     />
 
-    <splitbar
-      id="barid"
-      v-if="isShowMap"
-      @mousedown.native="drag"
-    />
+    <splitbar id="barid" v-if="isShowMap" @mousedown.native="drag" />
 
-    <mindmap ref="mapref" id="mapid" v-if="isShowMap" :markdown="mdContent"/>
+    <mindmap ref="mapref" id="mapid" v-if="isShowMap" :markdown="mdContent" />
   </div>
 </template>
 
@@ -46,7 +42,14 @@ export default {
   mounted () {
     this.stopMove()
     this.markdown = this.$route.query.markdown
-    console.log(this.$route)
+  },
+  watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        // console.log(val)
+        this.markdown = val.query.markdown
+      }
+    }
   },
 
   methods: {
@@ -117,13 +120,12 @@ export default {
 </script>
 
 <style scoped>
-  .content_work {
-    height: 100%;
-    width: 100%;
-    display: flex;
-  }
-  .content_work .topNav{
-    position: absolute;
-
-  }
+.content_work {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.content_work .topNav {
+  position: absolute;
+}
 </style>
