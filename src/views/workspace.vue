@@ -1,12 +1,12 @@
 <template>
   <div class="content_work">
-
     <markdown
       id="mdid"
       @change="onTextChange"
       :isShowNav="isShowNav"
       :isShowMap="isShowMap"
       v-on:ShowMap="onMoveMap"
+      :markdown="markdown"
     />
 
     <splitbar
@@ -38,12 +38,15 @@ export default {
       isShowNav: true,
       isShowMap: false,
       mdContent: '',
-      mdWidth: 0
+      mdWidth: 0,
+      markdown: ''
     }
   },
 
   mounted () {
     this.stopMove()
+    this.markdown = this.$route.query.markdown
+    console.log(this.$route)
   },
 
   methods: {

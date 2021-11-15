@@ -57,6 +57,15 @@ export default {
         }
       }).then(res => {
         this.$emit('open', res.data)
+        axios({
+          methods: 'get',
+          url: 'http://127.0.0.1:8080/api/showMdFile',
+          params: {
+            fileName: this.fileName
+          }
+        }).then(res => {
+          this.$router.push({ path: '/Markdown', query: { markdown: res.data } })
+        })
       })
     }
   },
