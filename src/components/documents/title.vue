@@ -119,7 +119,7 @@ export default {
 <style scoped>
   .titleContent{
     display: flex;
-    /* margin-top: 48px; */
+    margin-top: 48px;
   }
 
   .fileTitle{

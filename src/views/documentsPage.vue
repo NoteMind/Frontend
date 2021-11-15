@@ -1,6 +1,6 @@
 <template>
   <div class="files">
-    <fileTitle titleName="我的文档Mydoc" class="documentsTile" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
+    <fileTitle titleName="我的文档" class="documentsTile" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
     <div class="filesDisplay">
       <div v-for="(item, index) in fileList" :key="index">
         <fileItem :fileName="item.name" :isFolder="item.directory" @deleteFlush="flush" :isTrash="false"></fileItem>
@@ -64,7 +64,7 @@ export default {
   }
 
   .filesDisplay{
-    /* margin-left: 292px; */
+    margin-left: 292px;
     display: flex;
   }
 </style>

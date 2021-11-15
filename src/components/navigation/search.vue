@@ -5,14 +5,19 @@
       <input placeholder="全局搜索" class="searchInput">
     </div>
     <div class="addButton">
-      <img src="@/assets/pictures/navigation/svgs/add_white_24dp.svg" class="addIcon">
+      <img src="@/assets/pictures/navigation/svgs/add_white_24dp.svg" class="addIcon" @click="newMarkdown">
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'search'
+  name: 'search',
+  methods: {
+    newMarkdown: function () {
+      this.$router.push({ path: '/Markdown' })
+    }
+  }
 }
 </script>
 

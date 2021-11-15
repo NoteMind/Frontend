@@ -24,7 +24,7 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
 import Prism from 'prismjs'
 import axios from 'axios'
 
-VueMarkdownEditor.use(vuepressTheme, { Prism, extend(md) {} })
+VueMarkdownEditor.use(vuepressTheme, { Prism, extend (md) {} })
 
 export default {
   data () {
@@ -33,10 +33,10 @@ export default {
         title: '查看思维导图',
         icon: 'v-md-icon-tip',
         // 点击按钮触发动作
-        action(editor) {
+        action (editor) {
           editor.$emit('ShowMap')
         },
-        active:(editor)=>true
+        active: (editor) => true
       }
     }
 
@@ -47,40 +47,42 @@ export default {
   components: {
     VueMarkdownEditor
   },
-  
+
   methods: {
     // 上传图片
-    onUploadImage(event, insertImage, files) {
-      const file = files[0],
-      path = process.env.VUE_APP_BASE_API,
-      index = path.lastIndexOf("\/")
-      let param = new FormData()
+    onUploadImage (event, insertImage, files) {
+      const file = files[0]
+      const path = process.env.VUE_APP_BASE_API
+      const index = path.lastIndexOf('/')
+      const param = new FormData()
       param.append('image', file)
-      const config = { headers: {
-        'Content-Type': 'multipart/form-data'
-      }}
-      axios.post(`${path}doc/uploadfile/`, param, config).then(r =>{
-        if(r.data.code == 200) {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      axios.post(`${path}doc/uploadfile/`, param, config).then(r => {
+        if (r.data.code === 200) {
           const last = path.slice(0, index)
           insertImage({
             url: last + r.data.data.url,
             desc: files[0].name
           })
         }
-      }).catch(e=> {
+      }).catch(e => {
         this.Toast(2, '图片上传出了点小问题，请稍后重试')
       })
     },
 
     // 保存文本
-    onSaveText(text, html) {
+    onSaveText (text, html) {
 
     },
-    onMoveMap() {
+    onMoveMap () {
       this.$emit('ShowMap')
     },
-    onTextChange(text,html){
-      this.$emit('change',{text})
+    onTextChange (text, html) {
+      this.$emit('change', { text })
     }
   }
 }
@@ -97,7 +99,7 @@ export default {
   .mdpane {
     position: absolute;
   }
-  
+
   .Full {
     left: 0px;
     width: calc(100vw);

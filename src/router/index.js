@@ -6,11 +6,12 @@ Vue.use(VueRouter)
 const Documents = () => import('@/views/documentsPage.vue')
 const Trash = () => import('@/views/trashPage.vue')
 const Recent = () => import('@/views/nearlyPage.vue')
+const Markdown = () => import('@/views/workspace.vue')
 
 const routes = [
   {
     path: '',
-    redirect: '/Recent'
+    redirect: '/Documents'
   },
   {
     path: '/Documents',
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/Recent',
     component: Recent
+  },
+  {
+    path: '/Markdown',
+    component: Markdown
   }
 ]
 
