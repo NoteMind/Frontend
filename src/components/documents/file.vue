@@ -103,7 +103,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 230px;
+    width: 228px;
     height: 188px;
   }
 

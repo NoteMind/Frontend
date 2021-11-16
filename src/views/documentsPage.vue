@@ -61,10 +61,12 @@ export default {
   .files{
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .filesDisplay{
     margin-left: 292px;
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
