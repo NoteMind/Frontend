@@ -27,6 +27,11 @@ export default {
     return {
     }
   },
+  watch: {
+    fileList (val, oldVal) {
+      this.$emit('fileListChange')
+    }
+  },
   methods: {
     orderByName: function (data) {
       this.fileList = data

@@ -2,7 +2,7 @@
   <div id="app">
     <div class="content">
       <navigation v-on:MoveNav="onMoveNav" :fileList="fileList"/>
-      <router-view :fileList="fileList" class="topNav"></router-view>
+      <router-view :fileList="fileList" class="topNav" @fileListChange="fileListChange"></router-view>
     </div>
   </div>
 </template>
@@ -32,6 +32,20 @@ export default {
     }).then(res => {
       this.fileList = res.data
     })
+  },
+  methods: {
+    fileListChange: function () {
+      axios({
+        methods: 'get',
+        url: 'http://127.0.0.1:8080/api/files',
+        params: {
+          plusFilePath: '',
+          isTrash: false
+        }
+      }).then(res => {
+        this.fileList = res.data
+      })
+    }
   }
 }
 </script>
