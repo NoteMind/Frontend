@@ -14,7 +14,7 @@
       :toolbar="toolbar"
       @upload-image="onUploadImage" @save="onSaveText"
       @change="onTextChange"
-      :value="markdown"
+      v-model="markdown"
     />
   </div>
 </template>
@@ -51,6 +51,10 @@ export default {
     VueMarkdownEditor
   },
 
+  created: function () {
+    this.markdownContent = this.markdown
+  },
+
   methods: {
     // 上传图片
     onUploadImage (event, insertImage, files) {
@@ -79,7 +83,16 @@ export default {
 
     // 保存文本
     onSaveText (text, html) {
-
+      console.log(this.markdown)
+      axios({
+        methods: 'post',
+        url: 'http://127.0.0.1:8080/api/saveFile',
+        params: {
+          data: this.markdown
+        }
+      }).then(res => {
+        this.$router.push({ path: '/Documents' })
+      })
     },
     onMoveMap () {
       this.$emit('ShowMap')

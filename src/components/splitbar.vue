@@ -1,7 +1,7 @@
 <template>
   <div class="barclass"></div>
 </template>
- 
+
 <script>
 export default {
 }

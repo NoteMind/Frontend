@@ -18,7 +18,7 @@ export default {
       editor: null
     }
   },
-  props:['markdown'],
+  props: ['markdown'],
   created () {
     this.initializeDocumentElementClientDimensionalChangeListener(
       document.documentElement,
@@ -41,7 +41,7 @@ export default {
       deep: true
     }
   },
-  
+
   methods: {
     async initializePaneDimensions () {
       while (!document.getElementById('toolbar')?.clientHeight) {
@@ -81,7 +81,7 @@ export default {
         }
       )
     },
-    
+
     initializePaneResizing (edtiorClass, mindmapClass, resizeHandleClass = '.resize-handle') {
       const edtiorElement = document.querySelector(edtiorClass)
       const mindmapElement = document.querySelector(mindmapClass)
@@ -195,7 +195,7 @@ export default {
     width: 400px;
     background-color: rgb(247, 247, 247);
   }
-  
+
   #mindmap{
     height: 100%;
     width: 100%;
