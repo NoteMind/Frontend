@@ -1,6 +1,6 @@
 <template>
   <div class="trashContent">
-     <fileTitle titleName="最近删除" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
+     <fileTitle titleName="最近删除" class="trashTile" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
     <div class="filesDisplay">
       <div v-for="(item, index) in fileList" :key="index">
         <fileItem :fileName="item.name" :isFolder="item.directory" @deleteFlush="flush" :isTrash="true"></fileItem>
@@ -54,13 +54,18 @@ export default {
 </script>
 
 <style scoped>
+  .trashTile{
+    margin-left: 292px;
+  }
   .trashContent{
     display: flex;
     flex-direction: column;
-    margin-left: 292px;
+    width: 100%;
   }
 
   .filesDisplay{
+    margin-left: 292px;
     display: flex;
+    flex-wrap: wrap;
   }
 </style>

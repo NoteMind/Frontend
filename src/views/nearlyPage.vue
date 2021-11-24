@@ -1,6 +1,6 @@
 <template>
   <div class="nearlyContent">
-     <fileTitle titleName="最近编辑"></fileTitle>
+    <fileTitle titleName="最近编辑" class="nearlyTile"></fileTitle>
     <div class="filesDisplay">
       <div v-for="(item, index) in fileList" :key="index">
         <fileItem :fileName="item.name" :isFolder="item.directory"  @open="openRecent" @deleteFlush="orderByName" :isTrash="false"></fileItem>
@@ -44,13 +44,17 @@ export default {
 </script>
 
 <style scoped>
+  .nearlyTile{
+    margin-left: 292px;
+  }
   .nearlyContent{
     display: flex;
     flex-direction: column;
-    margin-left: 292px;
   }
 
   .filesDisplay{
+    margin-left: 292px;
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
