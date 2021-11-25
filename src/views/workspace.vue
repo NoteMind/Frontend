@@ -11,7 +11,7 @@
 
     <splitbar id="barid" v-if="isShowMap" @mousedown.native="drag" />
 
-    <mindmap ref="mapref" id="mapid" v-if="isShowMap" :markdown="mdContent" />
+    <mindmap ref="mapref" id="mapid" v-if="isShowMap" :markdown="markdown" />
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default {
       document.body.style.overflow = 'hidden'
     },
     onTextChange (text) {
-      this.mdContent = text.text
+      this.markdown = text.text
     },
     drag (e) {
       const left = document.getElementById('mdid')
