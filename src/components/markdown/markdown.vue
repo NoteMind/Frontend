@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <vue-markdown-editor
-      class="mdpane"
-      :class="{'Split2Right':isShowNav&!isShowMap,
-        'Split2Left':!isShowNav&isShowMap,
-        'Split':isShowNav&isShowMap,
-        'Full':!isShowNav&!isShowMap}"
-      v-on:ShowMap="onMoveMap()"
-      height="calc(100vh)"
-      :disabled-menus="[]"
-      left-toolbar="h quote | ul table | link image code | save"
-      right-toolbar="mindmap preview toc sync-scroll"
-      :toolbar="toolbar"
-      @upload-image="onUploadImage" @save="onSaveText"
-      @change="onTextChange"
-      v-model="markdown"
-    />
-  </div>
+  <vue-markdown-editor
+    class="mdpane"
+    :class="{'Split2Right':isShowNav&!isShowMap,
+      'Split2Left':!isShowNav&isShowMap,
+      'Split':isShowNav&isShowMap,
+      'Full':!isShowNav&!isShowMap}"
+    v-on:ShowMap="onMoveMap()"
+    height="calc(100vh)"
+    :disabled-menus="[]"
+    left-toolbar="h quote | ul table | link image code | save"
+    right-toolbar="mindmap preview toc sync-scroll"
+    :toolbar="toolbar"
+    @upload-image="onUploadImage" @save="onSaveText"
+    @change="onTextChange"
+    v-model="markdown"
+  />
 </template>
 
 <script>
@@ -50,7 +48,6 @@ export default {
   components: {
     VueMarkdownEditor
   },
-
   created: function () {
     this.markdownContent = this.markdown
   },

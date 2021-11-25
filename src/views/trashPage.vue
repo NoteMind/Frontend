@@ -1,5 +1,5 @@
 <template>
-  <div class="trashContent">
+  <div id="mdid" class="trashContent">
      <fileTitle titleName="最近删除" class="trashTile" @getByName="orderByName" @getByDate="orderByDate" @getByLength="orderByLength"></fileTitle>
     <div class="filesDisplay">
       <div v-for="(item, index) in fileList" :key="index">

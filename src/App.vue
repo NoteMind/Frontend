@@ -2,7 +2,7 @@
   <div id="app">
     <div class="content">
       <navigation v-on:MoveNav="onMoveNav" :fileList="fileList"/>
-      <router-view :fileList="fileList" class="topNav" @fileListChange="fileListChange"></router-view>
+      <router-view :fileList="fileList" class="topNav" @fileListChange="fileListChange" :isShowNav="isShowNav"></router-view>
     </div>
   </div>
 </template>
@@ -18,7 +18,8 @@ export default {
   data: function () {
     return {
       fileList: [],
-      nearlyFiles: []
+      nearlyFiles: [],
+      isShowNav: true
     }
   },
   created: function () {
@@ -45,6 +46,22 @@ export default {
       }).then(res => {
         this.fileList = res.data
       })
+    },
+    onMoveNav (e) {
+      this.isShowNav = !this.isShowNav
+      const left = document.getElementById('mdid')
+      console.log(left)
+      if (this.mdWidth !== 0) {
+        if (!this.isShowNav) {
+          left.style.width = this.mdWidth + 292 + 'px'
+          this.mdWidth = parseInt(left.style.width)
+          left.style.left = 0 + 'px'
+        } else {
+          left.style.width = this.mdWidth - 292 + 'px'
+          this.mdWidth = parseInt(left.style.width)
+          left.style.left = 292 + 'px'
+        }
+      }
     }
   }
 }
