@@ -22,7 +22,7 @@ import splitbar from '@/components/splitbar.vue'
 
 export default {
   name: 'workspace',
-
+  props:['isShowNav'],
   components: {
     markdown,
     mindmap,
@@ -31,7 +31,6 @@ export default {
 
   data () {
     return {
-      isShowNav: true,
       isShowMap: false,
       mdContent: '',
       mdWidth: 0,
@@ -49,6 +48,28 @@ export default {
         // console.log(val)
         this.markdown = val.query.markdown
       }
+    },
+    isShowNav: function (newStatus, oldStatus) {
+      const left = document.getElementById('mdid')
+      const bar = document.getElementById('barid')
+      const right = document.getElementById('mapid')
+      const diffVal = bar.left
+      
+      if (this.isShowNav) {
+        left.style.width = diffVal - 292 + 'px'
+      } else {
+        left.style.width = ''
+        left.style.width = diffVal + 'px'
+      }
+      left.style.right = diffVal + 'px'
+      left.style.transition = 0 + 's'
+      right.style.width = document.body.clientWidth - diffVal + 'px'
+      right.style.left = diffVal + 'px'
+
+      left.style.transition = 0.5 + 's'
+      this.mdWidth = parseInt(left.style.width)
+      const map = this.$refs.mapref
+      map.fitMindmap()
     }
   },
 
@@ -72,7 +93,7 @@ export default {
       document.onmousemove = function (e) {
         const diffVal = bar.left + (e.clientX - barLeft)
         bar.style.left = diffVal + 'px'
-
+        
         if (outer.isShowNav) {
           left.style.width = diffVal - 292 + 'px'
         } else {
@@ -98,21 +119,6 @@ export default {
       this.isShowMap = !this.isShowMap
       const left = document.getElementById('mdid')
       left.style.width = ''
-    },
-    onMoveNav (e) {
-      this.isShowNav = !this.isShowNav
-      const left = document.getElementById('mdid')
-      if (this.mdWidth !== 0) {
-        if (!this.isShowNav) {
-          left.style.width = this.mdWidth + 292 + 'px'
-          this.mdWidth = parseInt(left.style.width)
-          left.style.left = 0 + 'px'
-        } else {
-          left.style.width = this.mdWidth - 292 + 'px'
-          this.mdWidth = parseInt(left.style.width)
-          left.style.left = 292 + 'px'
-        }
-      }
     }
   }
 }
